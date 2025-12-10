@@ -13,5 +13,20 @@
         "laravel-vite-plugin": "^2.0.0",
         "tailwindcss": "^4.0.0",
         "vite": "^7.0.7"
+    },
+    "dependencies": {
+        "@inertiajs/progress": "^0.1.2",
+        "@inertiajs/react": "^2.2.20",
+        "@radix-ui/react-label": "^2.1.8",
+        "@radix-ui/react-navigation-menu": "^1.2.14",
+        "@radix-ui/react-slot": "^1.2.4",
+        "@vitejs/plugin-react": "^5.1.2",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "framer-motion": "^12.23.25",
+        "lucide-react": "^0.556.0",
+        "react": "^19.2.1",
+        "react-dom": "^19.2.1",
+        "tailwind-merge": "^3.4.0"
     }
 }
