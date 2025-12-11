@@ -115,7 +115,7 @@ export default function Navbar() {
                             <motion.div
                                 role="dialog"
                                 aria-modal="true"
-                                className="fixed inset-0 z-[100] bg-black/50 dark:bg-black/60"
+                                className="fixed inset-0 z-100 bg-black/50 dark:bg-black/60"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}

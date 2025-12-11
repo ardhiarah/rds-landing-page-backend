@@ -1,11 +1,6 @@
 import SiteLayout from "../Layouts/SiteLayout";
 import { Badge } from "../Components/ui/badge";
-import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
-} from "../Components/ui/card";
+
 import { usePage } from "@inertiajs/react";
 import { useRef } from "react";
 import LightGallery from "lightgallery/react";
@@ -24,6 +19,14 @@ export default function Galeri() {
         if (p.startsWith("/storage/")) return p;
         return "/storage/" + encodeURI(p);
     };
+    const galleryItems = items
+        .map((item, idx) => ({
+            idx,
+            url: toStorageUrl(item.image_url),
+            caption: item.caption || "",
+        }))
+        .filter((x) => !!x.url);
+    const galleryIndexMap = new Map(galleryItems.map((g, j) => [g.idx, j]));
 
     return (
         <SiteLayout>
@@ -46,16 +49,23 @@ export default function Galeri() {
                         {items.map((item, i) => {
                             const url = toStorageUrl(item.image_url);
                             return (
-                                <Card key={item.id} className="overflow-hidden">
-                                    <div className="h-40 w-full bg-neutral-100 dark:bg-neutral-900">
+                                <div
+                                    key={item.id}
+                                    className="overflow-hidden rounded-xl border border-slate-300 dark:border-slate-700"
+                                >
+                                    <div className="relative h-40 w-full bg-neutral-100 dark:bg-neutral-900">
                                         {url ? (
                                             <a
                                                 href={url}
                                                 onClick={(e) => {
                                                     e.preventDefault();
-                                                    lgRef.current?.openGallery(
-                                                        i
-                                                    );
+                                                    const gi =
+                                                        galleryIndexMap.get(i);
+                                                    if (gi !== undefined) {
+                                                        lgRef.current?.openGallery(
+                                                            gi
+                                                        );
+                                                    }
                                                 }}
                                                 className="block"
                                                 aria-label={
@@ -69,7 +79,7 @@ export default function Galeri() {
                                                         item.caption ||
                                                         "Foto Kegiatan"
                                                     }
-                                                    className="size-full object-cover"
+                                                    className="h-40 w-full object-cover"
                                                     loading="lazy"
                                                 />
                                             </a>
@@ -81,10 +91,10 @@ export default function Galeri() {
                                             />
                                         )}
                                     </div>
-                                    <CardContent className="text-center font-semibold text-sm text-neutral-600 dark:text-neutral-400">
-                                        {item.caption || ""}
-                                    </CardContent>
-                                </Card>
+                                    <p className="text-center font-semibold text-sm text-neutral-600 dark:text-neutral-400 p-4 min-h-12 flex items-center justify-center">
+                                        {item.caption || "Foto Kegiatan"}
+                                    </p>
+                                </div>
                             );
                         })}
                     </div>
@@ -93,19 +103,19 @@ export default function Galeri() {
                             lgRef.current = detail.instance;
                         }}
                         dynamic
-                        dynamicEl={items
-                            .map((item) =>
-                                toStorageUrl(item.image_url)
-                                    ? {
-                                          src: toStorageUrl(item.image_url),
-                                          subHtml: item.caption || "",
-                                      }
-                                    : null
-                            )
-                            .filter(Boolean)}
+                        dynamicEl={galleryItems.map((g) => ({
+                            src: g.url,
+                            thumb: g.url,
+                            subHtml: g.caption,
+                        }))}
                         speed={500}
                         plugins={[lgThumbnail, lgZoom]}
                         download={false}
+                        showThumbByDefault={true}
+                        thumbWidth={100}
+                        thumbHeight={70}
+                        animateThumb={false}
+                        toggleThumb={false}
                     />
                 </section>
             </main>

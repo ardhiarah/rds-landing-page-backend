@@ -1,11 +1,6 @@
 import SiteLayout from "../Layouts/SiteLayout";
 import { Badge } from "../Components/ui/badge";
-import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
-} from "../Components/ui/card";
+
 import { usePage } from "@inertiajs/react";
 
 export default function Klien() {
@@ -36,30 +31,37 @@ export default function Klien() {
 
                 <section className="mt-10">
                     <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
-                        {items.map((item) => (
-                            <Card
-                                key={item.id}
-                                className="items-center justify-center text-center overflow-hidden"
-                            >
-                                <div className="h-24 w-full bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center">
-                                    {item.logo_url ? (
-                                        <img
-                                            src={toStorageUrl(item.logo_url)}
-                                            alt={item.name || "Logo Klien"}
-                                            className="max-h-20 p-4 object-contain"
-                                        />
-                                    ) : null}
-                                </div>
-                                {/* <CardHeader>
-                                        <CardTitle className="text-lg font-bold text-black dark:text-white">
+                        {items.map((item) => {
+                            const url = toStorageUrl(item.logo_url);
+                            return (
+                                <div
+                                    key={item.id}
+                                    className="overflow-hidden rounded-xl border border-slate-300 dark:border-slate-700"
+                                >
+                                    <div className="relative h-40 w-full bg-neutral-100 dark:bg-neutral-900">
+                                        {url ? (
+                                            <img
+                                                src={url}
+                                                alt={item.name || "Logo Klien"}
+                                                className="h-40 w-full object-contain p-4"
+                                                loading="lazy"
+                                            />
+                                        ) : (
+                                            <img
+                                                src="/window.svg"
+                                                alt="Logo Klien"
+                                                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60 dark:invert"
+                                            />
+                                        )}
+                                    </div>
+                                    {item.name !== null && (
+                                        <p className="text-center font-semibold text-sm text-neutral-600 dark:text-neutral-400 p-4 min-h-12 flex items-center justify-center">
                                             {item.name || "Logo Klien"}
-                                        </CardTitle>
-                                    </CardHeader> */}
-                                <CardContent className="font-semibold text-sm text-neutral-600 dark:text-neutral-400">
-                                    {item.name || "Logo Klien"}
-                                </CardContent>
-                            </Card>
-                        ))}
+                                        </p>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 </section>
             </main>
