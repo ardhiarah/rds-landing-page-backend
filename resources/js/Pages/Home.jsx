@@ -8,8 +8,10 @@ import {
     CardContent,
 } from "../Components/ui/card";
 import ContactForm from "../Components/ContactForm";
+import { usePage } from "@inertiajs/react";
 
 export default function Home() {
+    const { clientLogos = [] } = usePage().props;
     return (
         <SiteLayout>
             <section className="relative overflow-hidden">
@@ -29,9 +31,12 @@ export default function Home() {
                                 Perbankan • Sertifikasi Manajemen Risiko
                             </Badge>
                             <h1 className="text-4xl font-bold tracking-tight text-black dark:text-white md:text-5xl">
-                                Solusi Pelatihan dan Sertifikasi Manajemen
-                                Risiko Perbankan
+                                Raharja Duta Solusindo
                             </h1>
+                            <p className="mt-2 text-lg font-medium text-black dark:text-white">
+                                Partner dalam memahami Manajemen Risiko dan
+                                Lulus Ujian Sertifikasi Manajemen Risiko
+                            </p>
                             <p className="mt-4 text-neutral-700 dark:text-neutral-300">
                                 PT Raharja Duta Solusindo membantu bank dan
                                 lembaga keuangan meningkatkan kapabilitas
@@ -96,6 +101,66 @@ export default function Home() {
                 </div>
             </section>
 
+            <section className="py-12">
+                <div className="mx-auto max-w-6xl px-6">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                        <div className="md:max-w-2xl">
+                            <Badge className="mb-3">Welcome to RDS</Badge>
+                            <h2 className="text-2xl font-semibold text-black dark:text-white">
+                                Raharja Duta Solusindo (RDS)
+                            </h2>
+                            <p className="mt-3 text-neutral-700 dark:text-neutral-300">
+                                Kami adalah lembaga training yang memberikan
+                                jasa pembekalan ujian sertifikasi Manajemen
+                                Risiko dengan tujuan peserta paham risk
+                                management dan lulus 100%, serta penyelenggara
+                                seminar/refreshment bagi pemegang sertifikat
+                                agar pengetahuan selalu up to date dan sesuai
+                                ketentuan Bank Indonesia/OJK.
+                            </p>
+                            <p className="mt-2 text-neutral-700 dark:text-neutral-300">
+                                RDS menyelenggarakan program pembekalan dan
+                                program refreshment, baik inhouse maupun public.
+                            </p>
+                        </div>
+                        <div className="md:max-w-xl">
+                            <Badge className="mb-3">Keunggulan RDS</Badge>
+                            <ul className="list-disc pl-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+                                <li>
+                                    Pengurus perusahaan langsung menjadi
+                                    marketer sehingga keputusan cepat.
+                                </li>
+                                <li>
+                                    Berpengalaman menyelenggarakan refreshment
+                                    18.000+ peserta dari 25 bank; pembekalan
+                                    sertifikasi dengan kelulusan 95–100%.
+                                </li>
+                                <li>
+                                    Trainer profesional yang membuat peserta
+                                    paham Manajemen Risiko hingga lulus 100%.
+                                </li>
+                                <li>
+                                    Buku panduan training up to date dari BSMR
+                                    atau LSPP.
+                                </li>
+                                <li>
+                                    Harga kompetitif dengan fokus kelulusan
+                                    tinggi.
+                                </li>
+                                <li>
+                                    Metode ramah peserta dengan latihan soal/try
+                                    out up to date dan bank soal 2.000 butir.
+                                </li>
+                                <li>
+                                    Supporting officer yang helpful dan
+                                    berpengalaman.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section
                 id="klien"
                 className="bg-neutral-50 py-16 dark:bg-neutral-950"
@@ -108,15 +173,56 @@ export default function Home() {
                         Lebih dari 25 bank di Indonesia dan lembaga keuangan
                         lainnya.
                     </p>
+                    <div className="mt-4">
+                        <a href="/klien">
+                            <Button variant="outline" size="sm">
+                                Lihat Semua Klien
+                            </Button>
+                        </a>
+                    </div>
                     <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
-                        {Array.from({ length: 8 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className="flex h-20 items-center justify-center rounded-lg border border-neutral-200 bg-white text-sm text-neutral-600 dark:border-neutral-800 dark:bg-black dark:text-neutral-400"
-                            >
-                                Logo Klien
-                            </div>
-                        ))}
+                        {clientLogos.length === 0
+                            ? Array.from({ length: 8 }).map((_, i) => (
+                                  <a key={i} href="/klien" className="block">
+                                      <div className="group relative flex h-20 items-center justify-center rounded-lg border border-neutral-200 bg-white text-sm text-neutral-600 dark:border-neutral-800 dark:bg-black dark:text-neutral-400">
+                                          <span>Logo Klien</span>
+                                          <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/50 opacity-0 group-hover:opacity-100 transition">
+                                              <span className="text-white text-xs">
+                                                  Logo Klien
+                                              </span>
+                                          </div>
+                                      </div>
+                                  </a>
+                              ))
+                            : clientLogos.map((logo) => (
+                                  <a
+                                      key={logo.id}
+                                      href="/klien"
+                                      className="block"
+                                      title={logo.name || "Logo Klien"}
+                                  >
+                                      <div className="group relative flex h-20 items-center justify-center rounded-lg border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-black">
+                                          {logo.logo_url ? (
+                                              <img
+                                                  src={logo.logo_url}
+                                                  alt={
+                                                      logo.name || "Logo Klien"
+                                                  }
+                                                  className="h-12 object-contain"
+                                              />
+                                          ) : (
+                                              <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                                                  Logo Klien
+                                              </span>
+                                          )}
+                                          <div className="absolute inset-0 flex items-center rounded-lg justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition">
+                                              <span className="text-white text-xs">
+                                                  {logo.name || "Logo Klien"}
+                                              </span>
+                                          </div>
+                                      </div>
+                                  </a>
+                              ))}
                     </div>
                 </div>
             </section>
@@ -172,74 +278,74 @@ export default function Home() {
             <section id="keunggulan" className="py-16">
                 <div className="mx-auto max-w-6xl px-6">
                     <h2 className="text-2xl font-semibold text-black dark:text-white">
-                        Keunggulan RDS
+                        Program Utama
                     </h2>
                     <div className="mt-8 grid gap-6 sm:grid-cols-2">
                         <Card>
                             <CardHeader>
-                                <CardTitle>Keputusan Cepat</CardTitle>
+                                <CardTitle>
+                                    Training Sertifikasi Manajemen Risiko
+                                </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                Pengurus perusahaan yang langsung menjadi
-                                marketer, sehingga cepat dalam mengambil
-                                keputusan.
+                                Pembekalan ujian Level 1–5 dengan ujian ke LSPP
+                                atau BSMR. Tujuan utama: paham dan lulus ujian.
+                                Didampingi trainer praktisi perbankan dengan
+                                tingkat kelulusan rata-rata 95–100%.
                             </CardContent>
                         </Card>
                         <Card>
                             <CardHeader>
-                                <CardTitle>Pengalaman Luas</CardTitle>
+                                <CardTitle>
+                                    Seminar/Refreshment Manajemen Risiko
+                                </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                Berpengalaman menyelenggarakan program
-                                refreshment 18.000+ peserta dari 25 bank di
-                                Indonesia.
+                                Perpanjangan masa berlaku sertifikat ke
+                                LSPP/BSMR. Pembicara level nasional: ekonom,
+                                direksi bank asing/swasta/BPD, mantan direksi
+                                BUMN, pimpinan LKB, mantan menteri. Topik:
+                                Strategic Risk, Credit Risk, Operational Risk,
+                                FINTECH.
                             </CardContent>
                         </Card>
                         <Card>
                             <CardHeader>
-                                <CardTitle>Trainer Profesional</CardTitle>
+                                <CardTitle>
+                                    Consulting (Free of Charge)
+                                </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                Tim trainer mampu memberikan pemahaman mendalam
-                                sehingga peserta dapat lulus 100%.
+                                Advisor pengelolaan database pemegang
+                                sertifikat, pengingat refreshment agar masa
+                                berlaku tidak kadaluarsa, penjadwalan. Membantu
+                                Divisi Learning Center memenuhi KPI.
                             </CardContent>
                         </Card>
                         <Card>
                             <CardHeader>
-                                <CardTitle>Materi Up to Date</CardTitle>
+                                <CardTitle>Training Bidang Lain</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                Buku panduan terbaru yang dikeluarkan oleh BSMR
-                                atau LSPP.
+                                Treasury Dealer, Credit, Funding & Services,
+                                Operational, Internal Audit, General Banking,
+                                Compliance.
                             </CardContent>
                         </Card>
                         <Card>
                             <CardHeader>
-                                <CardTitle>Harga Kompetitif</CardTitle>
+                                <CardTitle>Training Soft Skill</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                Biaya pelatihan bersaing dengan fokus pada
-                                tingkat kelulusan tinggi.
+                                Leadership, Selling Skill, Negotiation Skill,
+                                Customer Services.
                             </CardContent>
                         </Card>
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Metode Ramah Peserta</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                Latihan soal dan try out yang up to date dengan
-                                bank soal 2.000 butir.
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Dukungan Profesional</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                Supporting officer yang helpful dan
-                                berpengalaman mendampingi peserta.
-                            </CardContent>
-                        </Card>
+                    </div>
+                    <div className="mt-8">
+                        <a href="/layanan">
+                            <Button size="lg">Lihat Program Lengkap</Button>
+                        </a>
                     </div>
                 </div>
             </section>

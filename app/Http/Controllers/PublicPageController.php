@@ -15,7 +15,24 @@ class PublicPageController extends Controller
 {
     public function home()
     {
-        return Inertia::render('Home');
+        $clientLogos = ClientLogo::query()
+            ->where('is_published', true)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->limit(8)
+            ->get()
+            ->map(function ($logo) {
+                return [
+                    'id' => $logo->id,
+                    'logo_url' => url(Storage::url($logo->logo_path)),
+                    'name' => $logo->name,
+                ];
+            })
+            ->values();
+
+        return Inertia::render('Home', [
+            'clientLogos' => $clientLogos,
+        ]);
     }
 
     public function layanan()

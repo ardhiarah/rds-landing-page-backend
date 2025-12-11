@@ -66,6 +66,82 @@ export default function Layanan() {
                     </Card>
                 </section>
 
+                <div className="mt-12 flex items-center justify-between">
+                    <div>
+                        <Badge>Program</Badge>
+                        <h1 className="mt-3 text-3xl font-bold text-black dark:text-white">
+                            Program RDS
+                        </h1>
+                        <p className="mt-2 text-neutral-700 dark:text-neutral-300">
+                            Training pembekalan sertifikasi Manajemen Risiko,
+                            seminar/refreshment, konsultasi, dan program
+                            non-risiko serta soft skill.
+                        </p>
+                    </div>
+                </div>
+                <section className="mt-10 grid gap-6 md:grid-cols-2">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>
+                                Training Sertifikasi Manajemen Risiko (Level
+                                1–5)
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            Training pembekalan ujian ke LSPP atau BSMR dengan
+                            tujuan utama: paham dan lulus ujian. Didampingi
+                            Trainer Praktisi Perbankan berpengalaman sebagai
+                            trainer sekaligus pejabat bank. Tingkat kelulusan
+                            rata-rata 95%–100%.
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>
+                                Seminar/Refreshment Manajemen Risiko
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            Program perpanjangan masa berlaku sertifikat
+                            Manajemen Risiko ke LSPP/BSMR. Pembicara: ekonom
+                            handal, direksi bank asing/swasta/BPD, mantan
+                            direksi BUMN, pimpinan LKB, mantan menteri. Topik:
+                            Strategic Risk, Credit Risk, Operational Risk,
+                            FINTECH.
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Consulting (Free of Charge)</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            Advisor pengelolaan database pemegang sertifikat,
+                            pengingat refreshment agar masa berlaku tidak
+                            kadaluarsa, penjadwalan. Membantu Divisi Learning
+                            Center memenuhi KPI.
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Training Bidang Lain</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            Treasury Dealer, Credit, Funding &amp; Services,
+                            Operational, Internal Audit, General Banking,
+                            Compliance.
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Training Soft Skill</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            Leadership, Selling Skill, Negotiation Skill,
+                            Customer Services.
+                        </CardContent>
+                    </Card>
+                </section>
+
                 <div className="mt-12">
                     <Badge>Class</Badge>
                     <h1 className="mt-3 text-3xl font-bold text-black dark:text-white">
@@ -83,7 +159,7 @@ export default function Layanan() {
                             Schedule
                         </h2>
                         {schedules.length === 0 ? (
-                            <div className="mt-4 text-neutral-600 dark:text-neutral-400">
+                            <div className="italic mt-4 text-neutral-600 dark:text-neutral-400">
                                 Belum ada schedule yang tersedia.
                             </div>
                         ) : (
@@ -125,7 +201,7 @@ export default function Layanan() {
                             Event
                         </h2>
                         {events.length === 0 ? (
-                            <div className="mt-4 text-neutral-600 dark:text-neutral-400">
+                            <div className="italic mt-4 text-neutral-600 dark:text-neutral-400">
                                 Belum ada event yang tersedia.
                             </div>
                         ) : (
