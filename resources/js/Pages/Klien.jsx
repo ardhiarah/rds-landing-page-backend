@@ -78,11 +78,10 @@ export default function Klien() {
                     <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
                     <div className="relative mx-auto max-w-6xl px-6 text-center">
                         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                            Bergabung dengan Klien Kami
+                            Bergabung dengan Kami
                         </h2>
                         <p className="mx-auto mt-4 max-w-xl text-lg text-slate-300">
-                            Percayakan solusi teknologi dan keamanan Anda kepada
-                            RDS.
+                            Percayakan solusi managemen risiko Anda kepada RDS.
                         </p>
                         <div className="mt-10 flex justify-center gap-4">
                             <a
