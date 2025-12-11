@@ -40,6 +40,8 @@ class ClientLogoResource extends Resource
                     ->schema([
                         Forms\Components\FileUpload::make('logo_path')
                             ->image()
+                            ->disk('public')
+                            ->visibility('public')
                             ->directory('clients')
                             ->imageEditor()
                             ->required(),
@@ -54,7 +56,7 @@ class ClientLogoResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('logo_path')->label('Logo')->square(),
+                Tables\Columns\ImageColumn::make('logo_path')->label('Logo')->square()->disk('public'),
                 Tables\Columns\TextColumn::make('name')->limit(30),
                 Tables\Columns\IconColumn::make('is_published')->boolean(),
                 Tables\Columns\TextColumn::make('sort_order')->label('Urutan')->sortable(),
@@ -77,6 +79,8 @@ class ClientLogoResource extends Resource
                             ->multiple()
                             ->appendFiles()
                             ->preserveFilenames()
+                            ->disk('public')
+                            ->visibility('public')
                             ->directory('clients')
                             ->required(),
                     ])

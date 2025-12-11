@@ -43,6 +43,8 @@ class GalleryImageResource extends Resource
                     ->schema([
                         Forms\Components\FileUpload::make('image_path')
                             ->image()
+                            ->disk('public')
+                            ->visibility('public')
                             ->directory('gallery')
                             ->imageEditor()
                             ->required(),
@@ -57,7 +59,7 @@ class GalleryImageResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image_path')->label('Gambar')->square(),
+                Tables\Columns\ImageColumn::make('image_path')->label('Gambar')->square()->disk('public'),
                 Tables\Columns\TextColumn::make('caption')->limit(30),
                 Tables\Columns\IconColumn::make('is_published')->boolean(),
                 Tables\Columns\TextColumn::make('sort_order')->label('Urutan')->sortable(),
@@ -83,6 +85,8 @@ class GalleryImageResource extends Resource
                             ->multiple()
                             ->appendFiles()
                             ->preserveFilenames()
+                            ->disk('public')
+                            ->visibility('public')
                             ->directory('gallery')
                             ->required(),
                     ])

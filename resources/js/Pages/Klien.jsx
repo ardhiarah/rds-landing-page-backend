@@ -10,6 +10,12 @@ import { usePage } from "@inertiajs/react";
 
 export default function Klien() {
     const { items = [] } = usePage().props;
+    const toStorageUrl = (p) => {
+        if (!p) return null;
+        if (p.startsWith("http://") || p.startsWith("https://")) return p;
+        if (p.startsWith("/storage/")) return p;
+        return "/storage/" + encodeURI(p);
+    };
 
     return (
         <SiteLayout>
@@ -38,7 +44,7 @@ export default function Klien() {
                                 <div className="h-24 w-full bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center">
                                     {item.logo_url ? (
                                         <img
-                                            src={item.logo_url}
+                                            src={toStorageUrl(item.logo_url)}
                                             alt={item.name || "Logo Klien"}
                                             className="max-h-20 p-4 object-contain"
                                         />

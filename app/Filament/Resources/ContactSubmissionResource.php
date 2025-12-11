@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactSubmissionResource\Pages;
 use App\Models\ContactSubmission;
 use Filament\Resources\Resource;
+use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -52,6 +54,19 @@ class ContactSubmissionResource extends Resource
                 ]),
             ])
             ->emptyStateHeading('Belum ada data kontak');
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('name')->label('Nama'),
+                TextEntry::make('email')->label('Email')->copyable(),
+                TextEntry::make('institution')->label('Institusi'),
+                TextEntry::make('message')->label('Pesan')->columnSpanFull(),
+                TextEntry::make('created_at')->label('Diterima')->dateTime(),
+            ])
+            ->columns(2);
     }
 
     public static function getPages(): array
