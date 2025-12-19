@@ -15,8 +15,10 @@ import {
     MapPin,
 } from "lucide-react";
 import ContactForm from "../Components/ContactForm";
+import { useLanguage } from "../Contexts/LanguageContext";
 
 export default function Kontak() {
+    const { t } = useLanguage();
     return (
         <SiteLayout>
             {/* Hero Section */}
@@ -26,14 +28,13 @@ export default function Kontak() {
 
                 <div className="relative mx-auto max-w-6xl px-6 text-center">
                     <Badge className="mb-6 bg-purple-900/30 text-purple-300 hover:bg-purple-900/40 border-purple-700/50 px-4 py-1.5 text-sm uppercase tracking-wider">
-                        Hubungi Kami
+                        {t('kontak.badge')}
                     </Badge>
                     <h1 className="text-4xl font-extrabold tracking-tight leading-tight sm:text-6xl text-white">
-                        Informasi Kontak
+                        {t('kontak.title')}
                     </h1>
                     <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 leading-relaxed">
-                        Kami siap membantu Anda. Berikut adalah informasi kontak
-                        perusahaan kami.
+                        {t('kontak.desc')}
                     </p>
                 </div>
             </section>
@@ -46,7 +47,7 @@ export default function Kontak() {
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3 text-xl font-bold text-slate-900 dark:text-white">
                                     <Building className="h-6 w-6 text-purple-600" />
-                                    Informasi Kantor
+                                    {t('kontak.office_info')}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-6">
@@ -57,11 +58,10 @@ export default function Kontak() {
                                         </div>
                                         <div>
                                             <h3 className="font-semibold text-slate-900 dark:text-white">
-                                                PT RAHARJA DUTA SOLUSINDO
+                                                {t('kontak.company_name')}
                                             </h3>
                                             <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-                                                Solusi Teknologi & Keamanan
-                                                Terpercaya
+                                                {t('kontak.company_tagline')}
                                             </p>
                                         </div>
                                     </div>
@@ -70,23 +70,23 @@ export default function Kontak() {
                                             <MapPin className="h-5 w-5" />
                                         </div>
                                         <div className="text-sm text-slate-600 dark:text-slate-400">
-                                            <p>Sona Topas Tower Lantai 5A</p>
-                                            <p>Jl. Jend Sudirman Kav.26</p>
-                                            <p>Jakarta Selatan, Indonesia</p>
+                                            <p>{t('kontak.address_1')}</p>
+                                            <p>{t('kontak.address_2')}</p>
+                                            <p>{t('kontak.address_3')}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
                                     <h4 className="font-medium text-slate-900 dark:text-white">
-                                        Kontak Langsung
+                                        {t('kontak.direct_contact')}
                                     </h4>
                                     <div className="grid gap-4 sm:grid-cols-2">
                                         <div className="flex items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-800 p-3 hover:border-purple-500 transition-colors">
                                             <Phone className="h-5 w-5 text-purple-600" />
                                             <div>
                                                 <p className="text-xs text-slate-500">
-                                                    Telepon
+                                                    {t('kontak.phone')}
                                                 </p>
                                                 <p className="font-medium text-slate-900 dark:text-white">
                                                     021-29858082
@@ -97,7 +97,7 @@ export default function Kontak() {
                                             <Printer className="h-5 w-5 text-purple-600" />
                                             <div>
                                                 <p className="text-xs text-slate-500">
-                                                    Fax
+                                                    {t('kontak.fax')}
                                                 </p>
                                                 <p className="font-medium text-slate-900 dark:text-white">
                                                     021-2506223
@@ -108,7 +108,7 @@ export default function Kontak() {
                                             <Mail className="h-5 w-5 text-purple-600" />
                                             <div className="flex-1">
                                                 <p className="text-xs text-slate-500">
-                                                    Email
+                                                    {t('kontak.email')}
                                                 </p>
                                                 <a
                                                     href="mailto:solusindo@rds2015.com"
@@ -123,7 +123,7 @@ export default function Kontak() {
 
                                 <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
                                     <h4 className="font-medium text-slate-900 dark:text-white">
-                                        Personal Contact (Mobile)
+                                        {t('kontak.personal_contact')}
                                     </h4>
                                     <div className="grid gap-4 sm:grid-cols-2">
                                         <div className="flex items-center gap-3">
@@ -158,7 +158,7 @@ export default function Kontak() {
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3 text-xl font-bold text-slate-900 dark:text-white">
                                     <MapPin className="h-6 w-6 text-purple-600" />
-                                    Lokasi Kami
+                                    {t('kontak.location_title')}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="flex-1 p-0 overflow-hidden rounded-b-xl">
@@ -186,14 +186,13 @@ export default function Kontak() {
                     <div className="mt-20">
                         <div className="mb-10 text-center">
                             <Badge className="mb-4 bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
-                                Kirim Pesan
+                                {t('kontak.send_message')}
                             </Badge>
                             <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                                Hubungi Kami
+                                {t('kontak.form_title')}
                             </h2>
                             <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
-                                Isi formulir berikut atau gunakan email untuk
-                                terhubung dengan tim RDS.
+                                {t('kontak.form_desc')}
                             </p>
                         </div>
                         <div className="mx-auto max-w-2xl rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-lg">

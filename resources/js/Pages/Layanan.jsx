@@ -1,6 +1,7 @@
 import SiteLayout from "../Layouts/SiteLayout";
 import { Badge } from "../Components/ui/badge";
 import { useRef, useMemo } from "react";
+import { useLanguage } from "../Contexts/LanguageContext";
 import {
     Card,
     CardHeader,
@@ -22,9 +23,11 @@ import {
     Users,
     Calendar,
     BookOpen,
+    MonitorPlay,
 } from "lucide-react";
 
 export default function Layanan() {
+    const { t } = useLanguage();
     const { schedules = [], events = [] } = usePage().props;
     const sLgRef = useRef(null);
     const eLgRef = useRef(null);
@@ -85,18 +88,16 @@ export default function Layanan() {
 
                 <div className="relative mx-auto max-w-6xl px-6 text-center">
                     <Badge className="mb-6 bg-purple-900/30 text-purple-300 hover:bg-purple-900/40 border-purple-700/50 px-4 py-1.5 text-sm uppercase tracking-wider">
-                        Layanan Profesional
+                        {t("layanan.badge")}
                     </Badge>
                     <h1 className="text-4xl font-extrabold tracking-tight leading-tight sm:text-6xl text-white">
-                        Solusi Kompetensi <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-300">
-                            Terintegrasi
+                        {t("layanan.title_prefix")} <br />
+                        <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-indigo-300">
+                            {t("layanan.title_suffix")}
                         </span>
                     </h1>
                     <p className="mt-6 text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-                        Kami menyediakan program pelatihan komprehensif mulai
-                        dari persiapan sertifikasi, refreshment, hingga
-                        pengembangan soft skill untuk eksekutif perbankan.
+                        {t("layanan.desc")}
                     </p>
                 </div>
             </section>
@@ -106,27 +107,24 @@ export default function Layanan() {
                 <section className="mb-20">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                            Program Utama
+                            {t("layanan.core_programs")}
                         </h2>
                         <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                            Dirancang khusus untuk memenuhi standar kompetensi
-                            regulator (BI & OJK) dan kebutuhan industri.
+                            {t("layanan.core_desc")}
                         </p>
                     </div>
 
-                    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                         {/* Service 1 */}
                         <div className="group relative bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-slate-200 dark:border-slate-800">
                             <div className="h-12 w-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-colors">
                                 <ShieldCheck className="w-6 h-6 text-purple-600 group-hover:text-white transition-colors" />
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                Sertifikasi Manajemen Risiko
+                                {t("layanan.service1_title")}
                             </h3>
                             <p className="text-slate-600 dark:text-slate-400 mb-6">
-                                Training intensif untuk persiapan ujian Level
-                                1–5 (LSPP/BSMR). Tingkat kelulusan terbukti
-                                tinggi.
+                                {t("layanan.service1_desc")}
                             </p>
                         </div>
 
@@ -136,11 +134,10 @@ export default function Layanan() {
                                 <BookOpen className="w-6 h-6 text-amber-600 group-hover:text-white transition-colors" />
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                Executive Refreshment
+                                {t("layanan.service2_title")}
                             </h3>
                             <p className="text-slate-600 dark:text-slate-400 mb-6">
-                                Seminar dan workshop untuk memperpanjang masa
-                                berlaku sertifikat dengan topik-topik terkini.
+                                {t("layanan.service2_desc")}
                             </p>
                         </div>
 
@@ -150,12 +147,23 @@ export default function Layanan() {
                                 <Users className="w-6 h-6 text-emerald-600 group-hover:text-white transition-colors" />
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                                Soft Skill & Leadership
+                                {t("layanan.service3_title")}
                             </h3>
                             <p className="text-slate-600 dark:text-slate-400 mb-6">
-                                Pengembangan karakter dan kemampuan manajerial:
-                                Leadership, Negotiation, Selling Skill, Service
-                                Excellence.
+                                {t("layanan.service3_desc")}
+                            </p>
+                        </div>
+
+                        {/* Service 4 */}
+                        <div className="group relative bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-slate-200 dark:border-slate-800">
+                            <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
+                                <MonitorPlay className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" />
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                {t("layanan.service4_title")}
+                            </h3>
+                            <p className="text-slate-600 dark:text-slate-400 mb-6">
+                                {t("layanan.service4_desc")}
                             </p>
                         </div>
                     </div>
@@ -167,56 +175,46 @@ export default function Layanan() {
                         <div className="grid md:grid-cols-2 gap-12">
                             <div>
                                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-                                    Layanan Konsultasi & In-House
+                                    {t("layanan.consulting_title")}
                                 </h3>
                                 <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-                                    Selain public class, kami menyediakan
-                                    layanan in-house training yang disesuaikan
-                                    dengan budaya dan kebutuhan spesifik
-                                    perusahaan Anda.
+                                    {t("layanan.consulting_desc")}
                                 </p>
                                 <ul className="space-y-4">
-                                    {[
-                                        "Consulting (Free of Charge) untuk pengelolaan database sertifikasi",
-                                        "Training Treasury, Credit, & Audit",
-                                        "General Banking & Compliance",
-                                        "Try Out & Bank Soal (2000+ butir)",
-                                    ].map((item, idx) => (
-                                        <li
-                                            key={idx}
-                                            className="flex items-start gap-3"
-                                        >
-                                            <CheckCircle2 className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                                            <span className="text-slate-700 dark:text-slate-200">
-                                                {item}
-                                            </span>
-                                        </li>
-                                    ))}
+                                    {(t("layanan.consulting_list") || []).map(
+                                        (item, idx) => (
+                                            <li
+                                                key={idx}
+                                                className="flex items-start gap-3"
+                                            >
+                                                <CheckCircle2 className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 dark:text-slate-200">
+                                                    {item}
+                                                </span>
+                                            </li>
+                                        )
+                                    )}
                                 </ul>
                             </div>
                             <div className="grid gap-6">
                                 <Card className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800">
                                     <CardHeader>
                                         <CardTitle className="text-lg">
-                                            Fasilitas Lengkap
+                                            {t("layanan.facilities_title")}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent className="text-slate-600 dark:text-slate-400 text-sm">
-                                        Modul materi komprehensif, latihan soal
-                                        intensif, sertifikat, dan laporan
-                                        evaluasi peserta.
+                                        {t("layanan.facilities_desc")}
                                     </CardContent>
                                 </Card>
                                 <Card className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800">
                                     <CardHeader>
                                         <CardTitle className="text-lg">
-                                            Trainer Praktisi
+                                            {t("layanan.trainers_title")}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent className="text-slate-600 dark:text-slate-400 text-sm">
-                                        Didampingi oleh praktisi yang masih
-                                        aktif menjabat di perbankan
-                                        nasional/multinasional.
+                                        {t("layanan.trainers_desc")}
                                     </CardContent>
                                 </Card>
                             </div>
@@ -231,14 +229,14 @@ export default function Layanan() {
                         <div className="flex items-center gap-3 mb-8">
                             <Calendar className="w-8 h-8 text-purple-600" />
                             <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                                Jadwal Training
+                                {t("layanan.schedule_title")}
                             </h2>
                         </div>
 
                         {schedules.length === 0 ? (
                             <div className="p-8 text-center rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                                 <p className="text-slate-500 italic">
-                                    Belum ada jadwal yang ditampilkan saat ini.
+                                    {t("layanan.schedule_empty")}
                                 </p>
                             </div>
                         ) : (
@@ -281,7 +279,7 @@ export default function Layanan() {
                                                     </a>
                                                 ) : (
                                                     <div className="h-full w-full flex items-center justify-center text-slate-400">
-                                                        No Image
+                                                        {t("layanan.no_image")}
                                                     </div>
                                                 )}
                                             </div>
@@ -304,14 +302,14 @@ export default function Layanan() {
                         <div className="flex items-center gap-3 mb-8">
                             <TrendingUp className="w-8 h-8 text-amber-600" />
                             <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                                Event Terbaru
+                                {t("layanan.events_title")}
                             </h2>
                         </div>
 
                         {events.length === 0 ? (
                             <div className="p-8 text-center rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                                 <p className="text-slate-500 italic">
-                                    Belum ada event yang ditampilkan saat ini.
+                                    {t("layanan.events_empty")}
                                 </p>
                             </div>
                         ) : (
@@ -354,7 +352,7 @@ export default function Layanan() {
                                                     </a>
                                                 ) : (
                                                     <div className="h-full w-full flex items-center justify-center text-slate-400">
-                                                        No Image
+                                                        {t("layanan.no_image")}
                                                     </div>
                                                 )}
                                             </div>
@@ -393,7 +391,7 @@ export default function Layanan() {
                             className="absolute -top-24 left-0 -z-10 transform-gpu blur-3xl"
                             aria-hidden="true"
                         >
-                            <div className="aspect-[1404/767] w-[87.75rem] bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-25"></div>
+                            <div className="aspect-[1404/767] w-[87.75rem] bg-linear-to-r from-[#80caff] to-[#4f46e5] opacity-25"></div>
                         </div>
                     </div>
                 </section>

@@ -2,9 +2,11 @@ import SiteLayout from "../Layouts/SiteLayout";
 import { Badge } from "../Components/ui/badge";
 
 import { usePage } from "@inertiajs/react";
+import { useLanguage } from "../Contexts/LanguageContext";
 
 export default function Klien() {
     const { items = [] } = usePage().props;
+    const { t } = useLanguage();
     const toStorageUrl = (p) => {
         if (!p) return null;
         if (p.startsWith("http://") || p.startsWith("https://")) return p;
@@ -21,15 +23,13 @@ export default function Klien() {
 
                 <div className="relative mx-auto max-w-6xl px-6 text-center">
                     <Badge className="mb-6 bg-purple-900/30 text-purple-300 hover:bg-purple-900/40 border-purple-700/50 px-4 py-1.5 text-sm uppercase tracking-wider">
-                        Klien Kami
+                        {t('klien.badge')}
                     </Badge>
                     <h1 className="text-4xl font-extrabold tracking-tight leading-tight sm:text-6xl text-white">
-                        Klien yang Dilayani
+                        {t('klien.title')}
                     </h1>
                     <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 leading-relaxed">
-                        RDS melayani bank dan lembaga keuangan terkemuka di
-                        Indonesia, termasuk Bank BUMN, Bank Swasta Nasional,
-                        BPD, dan Bank Asing.
+                        {t('klien.desc')}
                     </p>
                 </div>
             </section>
@@ -48,14 +48,14 @@ export default function Klien() {
                                         {url ? (
                                             <img
                                                 src={url}
-                                                alt={item.name || "Logo Klien"}
+                                                alt={item.name || t('klien.logo_alt')}
                                                 className="max-h-full max-w-full object-contain filter grayscale transition-all duration-300 group-hover:grayscale-0"
                                                 loading="lazy"
                                             />
                                         ) : (
                                             <img
                                                 src="/window.svg"
-                                                alt="Logo Klien"
+                                                alt={t('klien.logo_alt')}
                                                 className="h-16 w-16 opacity-30 dark:invert"
                                             />
                                         )}
@@ -63,7 +63,7 @@ export default function Klien() {
                                     {item.name !== null && (
                                         <div className="border-t border-slate-100 dark:border-slate-800 p-4">
                                             <p className="text-center font-medium text-sm text-slate-600 dark:text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                                                {item.name || "Logo Klien"}
+                                                {item.name || t('klien.logo_alt')}
                                             </p>
                                         </div>
                                     )}
@@ -78,17 +78,17 @@ export default function Klien() {
                     <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
                     <div className="relative mx-auto max-w-6xl px-6 text-center">
                         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                            Bergabung dengan Kami
+                            {t('klien.cta_title')}
                         </h2>
                         <p className="mx-auto mt-4 max-w-xl text-lg text-slate-300">
-                            Percayakan solusi managemen risiko Anda kepada RDS.
+                            {t('klien.cta_desc')}
                         </p>
                         <div className="mt-10 flex justify-center gap-4">
                             <a
                                 href="/kontak"
                                 className="rounded-lg bg-purple-600 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 transition-all"
                             >
-                                Hubungi Kami
+                                {t('klien.cta_button')}
                             </a>
                         </div>
                     </div>

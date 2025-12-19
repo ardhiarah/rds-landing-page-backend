@@ -3,10 +3,12 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
+import { useLanguage } from "../Contexts/LanguageContext";
 
 export default function ContactForm({ className = "", header }) {
     const [status, setStatus] = useState(null);
     const [loading, setLoading] = useState(false);
+    const { t } = useLanguage();
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -32,16 +34,18 @@ export default function ContactForm({ className = "", header }) {
             if (res.ok && json?.ok) {
                 setStatus({
                     type: "success",
-                    message: "Terima kasih! Kami akan segera menghubungi Anda.",
+                    message: t("contact_form.success"),
                 });
                 form.reset();
             } else {
-                throw new Error(json?.message || "Terjadi kesalahan.");
+                throw new Error(
+                    json?.message || t("contact_form.generic_error")
+                );
             }
         } catch (err) {
             setStatus({
                 type: "error",
-                message: "Gagal mengirim formulir. Coba lagi.",
+                message: t("contact_form.error"),
             });
         } finally {
             setLoading(false);
@@ -56,48 +60,52 @@ export default function ContactForm({ className = "", header }) {
                 className={`${className} mx-auto w-full max-w-xl space-y-4`}
             >
                 <div className="grid gap-2">
-                    <Label htmlFor="nama">Nama</Label>
+                    <Label htmlFor="nama">{t("contact_form.name")}</Label>
                     <Input
                         id="nama"
                         name="nama"
-                        placeholder="Nama lengkap"
+                        placeholder={t("contact_form.name_placeholder")}
                         required
                     />
                 </div>
                 <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">{t("contact_form.email")}</Label>
                     <Input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="nama@perusahaan.com"
+                        placeholder={t("contact_form.email_placeholder")}
                         required
                     />
                 </div>
                 <div className="grid gap-2">
-                    <Label htmlFor="institusi">Institusi</Label>
+                    <Label htmlFor="institusi">
+                        {t("contact_form.institution")}
+                    </Label>
                     <Input
                         id="institusi"
                         name="institusi"
-                        placeholder="Nama bank/lembaga"
+                        placeholder={t("contact_form.institution_placeholder")}
                     />
                 </div>
                 <div className="grid gap-2">
-                    <Label htmlFor="pesan">Pesan</Label>
+                    <Label htmlFor="pesan">{t("contact_form.message")}</Label>
                     <Textarea
                         id="pesan"
                         name="pesan"
-                        placeholder="Kebutuhan pelatihan/sertifikasi"
+                        placeholder={t("contact_form.message_placeholder")}
                         required
                     />
                 </div>
                 <div className="flex items-center gap-3">
                     <Button type="submit" size="lg" disabled={loading}>
-                        {loading ? "Mengirim..." : "Kirim"}
+                        {loading
+                            ? t("contact_form.sending")
+                            : t("contact_form.submit")}
                     </Button>
                     <a href="mailto:info@rds-indonesia.com">
                         <Button variant="outline" size="lg" type="button">
-                            Email Langsung
+                            {t("contact_form.email_direct")}
                         </Button>
                     </a>
                 </div>

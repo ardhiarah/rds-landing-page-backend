@@ -8,10 +8,12 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import "lightgallery/css/lightgallery.css";
 import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
+import { useLanguage } from "../Contexts/LanguageContext";
 
 export default function Galeri() {
     const { items = [] } = usePage().props;
     const lgRef = useRef(null);
+    const { t } = useLanguage();
     const toStorageUrl = (p) => {
         if (!p) return null;
         if (p.startsWith("http://") || p.startsWith("https://")) return p;
@@ -36,14 +38,13 @@ export default function Galeri() {
 
                 <div className="relative mx-auto max-w-6xl px-6 text-center">
                     <Badge className="mb-6 bg-purple-900/30 text-purple-300 hover:bg-purple-900/40 border-purple-700/50 px-4 py-1.5 text-sm uppercase tracking-wider">
-                        Dokumentasi
+                        {t('galeri.badge')}
                     </Badge>
                     <h1 className="text-4xl font-extrabold tracking-tight leading-tight sm:text-6xl text-white">
-                        Galeri Kegiatan
+                        {t('galeri.title')}
                     </h1>
                     <p className="mt-6 text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-                        Momen-momen terbaik dari pelaksanaan training, seminar,
-                        dan workshop bersama mitra kami.
+                        {t('galeri.desc')}
                     </p>
                 </div>
             </section>
@@ -75,14 +76,14 @@ export default function Galeri() {
                                                 className="block h-full w-full"
                                                 aria-label={
                                                     item.caption ||
-                                                    "Foto Kegiatan"
+                                                    t('galeri.no_image')
                                                 }
                                             >
                                                 <img
                                                     src={url}
                                                     alt={
                                                         item.caption ||
-                                                        "Foto Kegiatan"
+                                                        t('galeri.no_image')
                                                     }
                                                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                     loading="lazy"
@@ -93,14 +94,14 @@ export default function Galeri() {
                                             <div className="h-full w-full flex items-center justify-center">
                                                 <img
                                                     src="/window.svg"
-                                                    alt="Foto Kegiatan"
+                                                    alt={t('galeri.no_image')}
                                                     className="w-1/2 opacity-20 dark:invert"
                                                 />
                                             </div>
                                         )}
                                     </div>
                                     <p className="text-center font-medium text-xs text-slate-600 dark:text-slate-400 p-3 min-h-[3rem] flex items-center justify-center bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
-                                        {item.caption || "Dokumentasi RDS"}
+                                        {item.caption || t('galeri.empty_caption')}
                                     </p>
                                 </div>
                             );

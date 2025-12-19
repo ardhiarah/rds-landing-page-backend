@@ -9,10 +9,12 @@ import {
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
+import { useLanguage } from "../Contexts/LanguageContext";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
     const { url } = usePage();
+    const { t, language, setLanguage } = useLanguage();
     const canUseDOM =
         typeof window !== "undefined" && typeof document !== "undefined";
 
@@ -41,11 +43,13 @@ export default function Navbar() {
         <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
                 <Link href="/" className="flex items-center gap-2">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-purple-600 text-white">
-                        R
-                    </span>
+                    <img
+                        src="/images/logo-rds.png"
+                        alt={t("nav.title")}
+                        className="inline-flex h-8 w-8 items-center justify-center"
+                    />
                     <span className="text-sm font-bold tracking-wide text-white">
-                        RDS Risk Management
+                        {t("nav.title")}
                     </span>
                 </Link>
                 <nav className="hidden items-center gap-1 md:flex">
@@ -59,7 +63,7 @@ export default function Navbar() {
                                     href="/"
                                     className="text-slate-300 hover:text-white transition-colors"
                                 >
-                                    Beranda
+                                    {t("nav.home")}
                                 </Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
@@ -72,7 +76,7 @@ export default function Navbar() {
                                     href="/tentang"
                                     className="text-slate-300 hover:text-white transition-colors"
                                 >
-                                    Tentang
+                                    {t("nav.about")}
                                 </Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
@@ -85,7 +89,7 @@ export default function Navbar() {
                                     href="/layanan"
                                     className="text-slate-300 hover:text-white transition-colors"
                                 >
-                                    Layanan
+                                    {t("nav.services")}
                                 </Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
@@ -98,7 +102,7 @@ export default function Navbar() {
                                     href="/klien"
                                     className="text-slate-300 hover:text-white transition-colors"
                                 >
-                                    Klien
+                                    {t("nav.clients")}
                                 </Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
@@ -111,7 +115,7 @@ export default function Navbar() {
                                     href="/galeri"
                                     className="text-slate-300 hover:text-white transition-colors"
                                 >
-                                    Galeri
+                                    {t("nav.gallery")}
                                 </Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
@@ -124,11 +128,35 @@ export default function Navbar() {
                                     href="/kontak"
                                     className="text-slate-300 hover:text-white transition-colors"
                                 >
-                                    Kontak
+                                    {t("nav.contact")}
                                 </Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                     </NavigationMenu>
+
+                    {/* Language Switcher Desktop */}
+                    <div className="flex items-center gap-2 ml-4 pl-4 border-l border-slate-800">
+                        <button
+                            onClick={() => setLanguage("id")}
+                            className={`text-xs font-bold px-2 py-1 rounded transition-colors ${
+                                language === "id"
+                                    ? "bg-purple-600 text-white"
+                                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                            }`}
+                        >
+                            ID
+                        </button>
+                        <button
+                            onClick={() => setLanguage("en")}
+                            className={`text-xs font-bold px-2 py-1 rounded transition-colors ${
+                                language === "en"
+                                    ? "bg-purple-600 text-white"
+                                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                            }`}
+                        >
+                            EN
+                        </button>
+                    </div>
                 </nav>
                 <button
                     aria-label="Menu"
@@ -174,7 +202,7 @@ export default function Navbar() {
                                                 R
                                             </span>
                                             <span className="text-sm font-bold tracking-wide text-white">
-                                                RDS Risk Management
+                                                {t("nav.title")}
                                             </span>
                                         </Link>
                                         <button
@@ -191,43 +219,75 @@ export default function Navbar() {
                                             className="block rounded-md px-3 py-2 text-sm text-slate-300 hover:bg-slate-900 hover:text-white"
                                             onClick={() => setOpen(false)}
                                         >
-                                            Beranda
+                                            {t("nav.home")}
                                         </Link>
                                         <Link
                                             href="/tentang"
                                             className="block rounded-md px-3 py-2 text-sm text-slate-300 hover:bg-slate-900 hover:text-white"
                                             onClick={() => setOpen(false)}
                                         >
-                                            Tentang
+                                            {t("nav.about")}
                                         </Link>
                                         <Link
                                             href="/layanan"
                                             className="block rounded-md px-3 py-2 text-sm text-slate-300 hover:bg-slate-900 hover:text-white"
                                             onClick={() => setOpen(false)}
                                         >
-                                            Layanan
+                                            {t("nav.services")}
                                         </Link>
                                         <Link
                                             href="/klien"
                                             className="block rounded-md px-3 py-2 text-sm text-slate-300 hover:bg-slate-900 hover:text-white"
                                             onClick={() => setOpen(false)}
                                         >
-                                            Klien
+                                            {t("nav.clients")}
                                         </Link>
                                         <Link
                                             href="/galeri"
                                             className="block rounded-md px-3 py-2 text-sm text-slate-300 hover:bg-slate-900 hover:text-white"
                                             onClick={() => setOpen(false)}
                                         >
-                                            Galeri
+                                            {t("nav.gallery")}
                                         </Link>
                                         <Link
                                             href="/kontak"
                                             className="block rounded-md px-3 py-2 text-sm text-slate-300 hover:bg-slate-900 hover:text-white"
                                             onClick={() => setOpen(false)}
                                         >
-                                            Kontak
+                                            {t("nav.contact")}
                                         </Link>
+                                    </div>
+
+                                    {/* Language Switcher Mobile */}
+                                    <div className="mt-8 pt-6 border-t border-slate-800">
+                                        <div className="flex items-center gap-4 justify-center">
+                                            <button
+                                                onClick={() => {
+                                                    setLanguage("id");
+                                                    setOpen(false);
+                                                }}
+                                                className={`text-sm font-bold px-4 py-2 rounded transition-colors ${
+                                                    language === "id"
+                                                        ? "bg-purple-600 text-white"
+                                                        : "text-slate-400 bg-slate-900"
+                                                }`}
+                                            >
+                                                Bahasa Indonesia
+                                            </button>
+                                            <button
+                                                onClick={() => {
+                                                    setLanguage("en");
+                                                    setOpen(false);
+                                                }}
+                                                className={`text-sm font-bold px-4 py-2 rounded transition-colors ${
+                                                    language === "en"
+                                                        ? "bg-purple-600 text-white"
+                                                        : "text-slate-400 bg-slate-900"
+                                                }`}
+                                            >
+                                                English
+                                            </button>
+                                        </div>
                                     </div>
                                 </motion.div>
                             </motion.div>

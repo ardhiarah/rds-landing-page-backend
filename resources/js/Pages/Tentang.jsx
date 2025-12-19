@@ -6,8 +6,10 @@ import {
     CardTitle,
     CardContent,
 } from "../Components/ui/card";
+import { useLanguage } from "../Contexts/LanguageContext";
 
 export default function Tentang() {
+    const { t } = useLanguage();
     return (
         <SiteLayout>
             {/* HERO SECTION */}
@@ -17,19 +19,16 @@ export default function Tentang() {
 
                 <div className="relative mx-auto max-w-6xl px-6 text-center">
                     <Badge className="mb-6 bg-purple-900/30 text-purple-300 hover:bg-purple-900/40 border-purple-700/50 px-4 py-1.5 text-sm uppercase tracking-wider">
-                        Tentang Kami
+                        {t("tentang.badge")}
                     </Badge>
                     <h1 className="text-4xl font-extrabold tracking-tight leading-tight sm:text-6xl text-white">
-                        Membangun Kompetensi <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-300">
-                            Profesional Perbankan
+                        {t("tentang.title_prefix")} <br />
+                        <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-indigo-300">
+                            {t("tentang.title_suffix")}
                         </span>
                     </h1>
                     <p className="mt-6 text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-                        PT Raharja Duta Solusindo (RDS) hadir sebagai mitra
-                        strategis dalam pengembangan sumber daya manusia di
-                        sektor keuangan, dengan fokus pada integritas, kualitas,
-                        dan hasil nyata.
+                        {t("tentang.desc")}
                     </p>
                 </div>
             </section>
@@ -40,22 +39,22 @@ export default function Tentang() {
                 <section className="grid gap-12 lg:grid-cols-2 items-center">
                     <div>
                         <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
-                            Profil Perusahaan
+                            {t("tentang.profile_title")}
                         </h2>
                         <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                            <p>{t("tentang.profile_p1")}</p>
                             <p>
-                                PT Raharja Duta Solusindo (RDS) adalah lembaga
-                                training yang didirikan oleh para praktisi
-                                berpengalaman. Kami menggabungkan keahlian dari
-                                dunia perbankan multinasional, BUMN, hingga
-                                lembaga sertifikasi profesi.
-                            </p>
-                            <p>
-                                Didirikan oleh <strong>Soeyamto, SE</strong>{" "}
-                                (Praktisi Perbankan & LSPP) dan{" "}
-                                <strong>Ratih Dewi, S.Sos, MM</strong> (Praktisi
-                                Telekomunikasi & LSPP), RDS membawa standar
-                                tinggi dalam setiap program pelatihannya.
+                                {t("tentang.profile_p2_prefix")}{" "}
+                                <strong>
+                                    {t("tentang.profile_p2_founder1")}
+                                </strong>{" "}
+                                {t("tentang.profile_p2_founder1_role")}{" "}
+                                {t("tentang.profile_p2_and")}{" "}
+                                <strong>
+                                    {t("tentang.profile_p2_founder2")}
+                                </strong>{" "}
+                                {t("tentang.profile_p2_founder2_role")}
+                                {t("tentang.profile_p2_suffix")}
                             </p>
                         </div>
                     </div>
@@ -63,23 +62,21 @@ export default function Tentang() {
                         <Card className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800">
                             <CardHeader>
                                 <CardTitle className="text-purple-700 dark:text-purple-400">
-                                    Pengalaman
+                                    {t("tentang.exp_title")}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="text-slate-600 dark:text-slate-400">
-                                Melayani lebih dari 20 bank (Asing, BUMN,
-                                Swasta, BPD) sejak 2016.
+                                {t("tentang.exp_desc")}
                             </CardContent>
                         </Card>
                         <Card className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800">
                             <CardHeader>
                                 <CardTitle className="text-purple-700 dark:text-purple-400">
-                                    Kualitas
+                                    {t("tentang.quality_title")}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="text-slate-600 dark:text-slate-400">
-                                Tingkat kelulusan 95%-100% untuk ujian
-                                sertifikasi Manajemen Risiko.
+                                {t("tentang.quality_desc")}
                             </CardContent>
                         </Card>
                     </div>
@@ -91,40 +88,28 @@ export default function Tentang() {
                         <div className="bg-slate-900 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/20 rounded-full blur-3xl" />
                             <h3 className="text-2xl font-bold mb-4">
-                                Visi Kami
+                                {t("tentang.visi_title")}
                             </h3>
                             <p className="text-slate-300 leading-relaxed">
-                                Menjadi partner terpercaya dan{" "}
-                                <em>problem solver</em> utama dalam pembekalan
-                                ujian, refreshment, dan training perbankan di
-                                Indonesia.
+                                {t("tentang.visi_desc")}
                             </p>
                         </div>
                         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm">
                             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                                Misi Kami
+                                {t("tentang.misi_title")}
                             </h3>
                             <ul className="space-y-3 text-slate-600 dark:text-slate-300">
-                                <li className="flex items-start gap-3">
-                                    <span className="text-purple-600 font-bold">
-                                        •
-                                    </span>
-                                    Membantu kelulusan ujian sertifikasi hingga
-                                    100%.
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-purple-600 font-bold">
-                                        •
-                                    </span>
-                                    Mendukung pemenuhan regulasi Bank Indonesia
-                                    & OJK.
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-purple-600 font-bold">
-                                        •
-                                    </span>
-                                    Menjalin sinergi erat dengan BSMR dan LSPP.
-                                </li>
+                                {t("tentang.misi_list").map((item, idx) => (
+                                    <li
+                                        key={idx}
+                                        className="flex items-start gap-3"
+                                    >
+                                        <span className="text-purple-600 font-bold">
+                                            •
+                                        </span>
+                                        {item}
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -137,10 +122,10 @@ export default function Tentang() {
                             variant="outline"
                             className="mb-3 border-purple-600 text-purple-600"
                         >
-                            Leadership
+                            {t("tentang.leadership_badge")}
                         </Badge>
                         <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                            Dewan Direksi
+                            {t("tentang.leadership_title")}
                         </h2>
                     </div>
                     <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
@@ -151,13 +136,13 @@ export default function Tentang() {
                                     alt="Soeyamto, SE"
                                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
                                 <div className="absolute bottom-0 left-0 p-6 text-white">
                                     <p className="font-bold text-xl">
                                         Soeyamto, SE
                                     </p>
                                     <p className="text-sm text-slate-300 uppercase tracking-wider">
-                                        Komisaris Utama
+                                        {t("tentang.komisaris_role")}
                                     </p>
                                 </div>
                             </div>
@@ -169,13 +154,13 @@ export default function Tentang() {
                                     alt="Ratih Dewi, S.Sos, MM"
                                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
                                 <div className="absolute bottom-0 left-0 p-6 text-white">
                                     <p className="font-bold text-xl">
                                         Ratih Dewi, S.Sos, MM
                                     </p>
                                     <p className="text-sm text-slate-300 uppercase tracking-wider">
-                                        Direktur Utama
+                                        {t("tentang.direktur_role")}
                                     </p>
                                 </div>
                             </div>
@@ -186,32 +171,11 @@ export default function Tentang() {
                 {/* Timeline */}
                 <section className="mt-20 border-t border-slate-200 dark:border-slate-800 pt-16">
                     <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-                        Jejak Langkah
+                        {t("tentang.timeline_title")}
                     </h2>
                     <div className="max-w-3xl mx-auto">
                         <div className="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 md:ml-0 space-y-12">
-                            {[
-                                {
-                                    year: "Januari 2016",
-                                    title: "Awal Perjalanan",
-                                    desc: "Mulai melayani bank dan lembaga keuangan di Indonesia dengan visi meningkatkan kompetensi SDM.",
-                                },
-                                {
-                                    year: "April 2019",
-                                    title: "Pertumbuhan Pesat",
-                                    desc: "Dipercaya oleh 20 bank besar (Asing, BUMN, BPD) sebagai mitra training utama.",
-                                },
-                                {
-                                    year: "Capaian Signifikan",
-                                    title: "Ribuan Alumni",
-                                    desc: "Mencetak 2.022 peserta sertifikasi dengan kelulusan >95% dan 8.500+ peserta refreshment.",
-                                },
-                                {
-                                    year: "Sekarang",
-                                    title: "Ekspansi Layanan",
-                                    desc: "Mengembangkan modul Soft Skill & Leadership untuk solusi SDM yang lebih holistik.",
-                                },
-                            ].map((item, idx) => (
+                            {t("tentang.timeline").map((item, idx) => (
                                 <div
                                     key={idx}
                                     className="relative pl-8 md:pl-12"
